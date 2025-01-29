@@ -80,5 +80,28 @@ public class Biblioteca {
         for (Livro l : livrosOrdenados) {
             System.out.println(l);
         }
+// Parte 2 do exercício
+
+    public static void EmprestarLivro(String isbn, String matricula) {
+
+        // Implementação do método EmprestarLivro
+
+        System.out.println("Livro emprestado: ISBN " + isbn + ", Matrícula " + matricula);
+
+    }
+
+    public static void DevolverLivro(String isbn, String matricula) {
+
+        // Implement the logic to return a book here
+
+        System.out.println("Livro devolvido com sucesso!");
+
+    }
+
+
+    
+
+}
+
     }
 }

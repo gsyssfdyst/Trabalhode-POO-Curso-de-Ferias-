@@ -1,13 +1,12 @@
 import java.util.Scanner;
 
 public class SistemaBiblioteca {
-   // private static void menu() {
-    // }
+    private static void menu() {
+    }
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        //int opcao = 0;
-         String ;
+        int opcao = 0;
         do {
             menu();
             opcao = scanner.nextInt();

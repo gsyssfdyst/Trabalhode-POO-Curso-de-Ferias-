@@ -2,6 +2,15 @@ import java.util.Scanner;
 
 public class SistemaBiblioteca {
     private static void menu() {
+        System.out.println("\n===== MENU DA BIBLIOTECA =====");
+        System.out.println("1. Cadastrar Livro");
+        System.out.println("2. Cadastrar Usuário");
+        System.out.println("3. Emprestar Livro");
+        System.out.println("4. Devolver Livro");
+        System.out.println("5. Listar Livros");
+        System.out.println("6. Listar Usuários");
+        System.out.println("7. Sair");
+        System.out.print("Escolha uma opção: ");
     }
     public static void main(String[] args) {
 
@@ -9,7 +18,15 @@ public class SistemaBiblioteca {
         int opcao = 0;
         do {
             menu();
-            opcao = scanner.nextInt();
+          if (scanner.hasNextInt()) {
+                opcao = scanner.nextInt();
+                scanner.nextLine(); // Limpa o buffer do teclado
+            } else {
+                scanner.next();
+                System.out.println("Opção inválida");
+                scanner.nextLine(); // Limpa o buffer do teclado
+                continue;  //Voltar ao início do laço
+          }
             switch (opcao) {
                 case 1:
                     System.out.println("1. Cadastrar Livro");

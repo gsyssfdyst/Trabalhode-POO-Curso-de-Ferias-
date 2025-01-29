@@ -58,4 +58,24 @@ public  Livro(String isnn, String titulo, String autores, String editora, int nu
     public void setNumeroPaginas(int numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
     }
-}
+
+    public class Livro {
+        // ... outros atributos ...
+        private int quantidadeEmprestada;
+    
+        public Livro(...) {
+            // ... inicialização de outros atributos ...
+            this.quantidadeEmprestada = 0;
+        }
+    
+        // ... outros métodos ...
+    
+        public void emprestar() {
+            this.quantidadeEmprestada++;
+        }
+    
+        public void devolver() {
+            this.quantidadeEmprestada--;
+        }
+    
+    

@@ -6,14 +6,16 @@ public class Livro {
     private int numeroPaginas;
     private int quantidade;
     private boolean emprestado;
+    private int quantidadeEmprestada;
 
-public  Livro(String isnn, String titulo, String autores, String editora, int numeroPaginas, int quantidade) {
-    this.isbn = isnn;
-    this.titulo = titulo;
-    this.autores = autores;
-    this.editora = editora;
-    this.numeroPaginas = numeroPaginas;
-    this.quantidade = quantidade;
+    public Livro(String isbn, String titulo, String autores, String editora, int numeroPaginas, int quantidade) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.autores = autores;
+        this.editora = editora;
+        this.numeroPaginas = numeroPaginas;
+        this.quantidade = quantidade;
+        this.quantidadeEmprestada = 0;
     }
 
     public void setIsbn(String isbn) {
@@ -64,26 +66,14 @@ public  Livro(String isnn, String titulo, String autores, String editora, int nu
         this.numeroPaginas = numeroPaginas;
     }
 
-    public class Livro {
-        // ... outros atributos ...
-        private int quantidadeEmprestada;
-    
-        public Livro(...) {
-            // ... inicialização de outros atributos ...
-            this.quantidadeEmprestada = 0;
-        }
-    
-        // ... outros métodos ...
-    
-        public void emprestar() {
-            this.quantidadeEmprestada++;
-        }
-    
-        public void devolver() {
-            this.quantidadeEmprestada--;
-        }
-    
-    
+    public void emprestar() {
+        this.quantidadeEmprestada++;
+    }
+
+    public void devolver() {
+        this.quantidadeEmprestada--;
+    }
+}
 
 public class Emprestimo {
 
@@ -91,36 +81,20 @@ public class Emprestimo {
 
     private String matricula;
 
-
-
     public Emprestimo(String isbn, String matricula) {
-
         this.isbn = isbn;
-
         this.matricula = matricula;
-
     }
-
-
 
     public String getIsbn() {
-
         return isbn;
-
     }
-
-
 
     public String getMatricula() {
-
         return matricula;
-
     }
 
-
-
     // other methods
-
 }
 
 

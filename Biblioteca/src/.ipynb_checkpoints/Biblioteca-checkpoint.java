@@ -84,7 +84,7 @@ public class Biblioteca {
         List<Livro> livrosOrdenados = new ArrayList<>(livros);
         Collections.sort(livrosOrdenados, Comparator.comparing(Livro::getTitulo));
         for (Livro l : livrosOrdenados) {
-            System.out.println("ISBN: " + l.getIsbn() + ", Título: " + l.getTitulo() + ", Autor: " + l.getAutores() + ", Editora: " + l.getEditora() + ", Páginas: " + l.getNumeroPaginas() + ", Quantidade: " + l.getQuantidade());
+            System.out.println(l);
         }
     }
 
@@ -99,7 +99,23 @@ public class Biblioteca {
     }
 
    
-// Move this class to a separate file named Emprestimo.java
+public class Emprestimo {
+    private String isbn;
+    private String cpf;
+
+    public Emprestimo(String isbn, String cpf) {
+        this.isbn = isbn;
+        this.cpf = cpf;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+}
 
 public class Livro {
 
@@ -112,10 +128,6 @@ public class Livro {
     private String titulo;
 
     private boolean emprestado;
-    
-    public String getTitulo() {
-        return titulo;
-    }
 
 
 

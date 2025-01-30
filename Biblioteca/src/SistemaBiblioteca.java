@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class SistemaBiblioteca {
+    private static Biblioteca biblioteca = new Biblioteca();
+
     private static void menu() {
         System.out.println("\n===== MENU DA BIBLIOTECA =====");
         System.out.println("1. Cadastrar Livro");
@@ -12,13 +14,13 @@ public class SistemaBiblioteca {
         System.out.println("7. Sair");
         System.out.print("Escolha uma opção: ");
     }
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcao = 0;
         do {
             menu();
-          if (scanner.hasNextInt()) {
+            if (scanner.hasNextInt()) {
                 opcao = scanner.nextInt();
                 scanner.nextLine(); // Limpa o buffer do teclado
             } else {
@@ -26,7 +28,7 @@ public class SistemaBiblioteca {
                 System.out.println("Opção inválida");
                 scanner.nextLine(); // Limpa o buffer do teclado
                 continue;  //Voltar ao início do laço
-          }
+            }
             switch (opcao) {
                 case 1:
                     System.out.println("1. Cadastrar Livro");
@@ -68,7 +70,6 @@ public class SistemaBiblioteca {
                     } else {
                         System.out.println("Tipo inválido");
                     }
-
                     break;
                 case 3:
                     System.out.println("3. Emprestar Livro");
@@ -86,29 +87,21 @@ public class SistemaBiblioteca {
                     String matriculaDevolucao = scanner.nextLine();
                     Biblioteca.DevolverLivro(isbnDevolucao, matriculaDevolucao);
                     break;
-                
                 case 5:
                     System.out.println("Listar Livros");
-                    Biblioteca.listarLivros();
+                    biblioteca.listarLivros();
                     break;
                 case 6:
                     System.out.println("Listar Usuários");
-                    Biblioteca.listarUsuarios();
+                    biblioteca.listarUsuarios();
                     break;
                 case 7:
                     System.out.println("Sair");
+                    scanner.close();
                     break;
                 default:
                     System.out.println("Opção inválida");
             }
         } while (opcao != 7);
-
-
-
-
-
     }
-
-
-
 }

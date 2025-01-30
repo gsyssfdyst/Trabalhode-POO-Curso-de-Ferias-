@@ -1,26 +1,33 @@
 import java.util.*;
 
 public class Biblioteca {
-    private Map<String, Usuario> usuarios; // Usando HashMap para usuários
-    private Map<String, Livro> livros;     // Usando HashMap para livros
-
+   private List<Usuario> usuarios = new ArrayList<>();
+    private List<Livro> livros = new ArrayList<>();
+    
     public Biblioteca() {
-        this.usuarios = new HashMap<>();
-        this.livros = new HashMap<>();
+        this.usuarios = new ArrayList<>();
+        this.livros = new ArrayList<>();
+
     }
 
+   
+
     public void cadastrarUsuario(Usuario usuario) throws Exception {
-        if (usuarios.containsKey(usuario.getCpf())) {
-            throw new Exception("Usuário com este CPF já está cadastrado.");
+        for (Usuario u : usuarios) {
+            if (u.getCpf().equals(usuario.getCpf())) {
+                throw new Exception("Usuário com este CPF já está cadastrado.");
+            }
         }
-        usuarios.put(usuario.getCpf(), usuario);
+        usuarios.add(usuario);
     }
 
     public void cadastrarLivro(Livro livro) throws Exception {
-        if (livros.containsKey(livro.getIsbn())) {
-            throw new Exception("Livro com este ISBN já está cadastrado.");
+        for (Livro l : livros) {
+            if (l.getIsbn().equals(livro.getIsbn())) {
+                throw new Exception("Livro com este ISBN já está cadastrado.");
+            }
         }
-        livros.put((String) livro.getIsbn(), livro);
+        livros.add(livro);
     }
 
     public Usuario buscarUsuario(String cpf) throws Exception {
@@ -64,22 +71,22 @@ public class Biblioteca {
 
         livro.devolver();
         usuario.removerEmprestimo(isbn);
-    }
-
-    public void listarUsuarios() {
+    //public static void listarUsuarios() {
         List<Usuario> usuariosOrdenados = new ArrayList<>(usuarios.values());
         Collections.sort(usuariosOrdenados, Comparator.comparing(Usuario::getNome));
         for (Usuario u : usuariosOrdenados) {
             System.out.println(u);
         }
+
+
+    public static void listarUsuarios() {
+        // Implementação do método listarUsuarios
+
+        System.out.println("Listando usuários...");
+
     }
 
-    public void listarLivros() {
-        List<Livro> livrosOrdenados = new ArrayList<>(livros.values());
-        Collections.sort(livrosOrdenados, Comparator.comparing(Livro::getTitulo));
-        for (Livro l : livrosOrdenados) {
-            System.out.println(l);
-        }
+    
 // Parte 2 do exercício
 
     public static void EmprestarLivro(String isbn, String matricula) {
@@ -98,8 +105,20 @@ public class Biblioteca {
 
     }
 
+     public static void listarLivros() {
+        // Implementação do método listarLivros
+        List<Livro> livrosOrdenados = new ArrayList<>(livros.values());
+        Collections.sort(livrosOrdenados, Comparator.comparing(Livro::getTitulo));
+        for (Livro l : livrosOrdenados) {
+            System.out.println(l);
+        }
 
-    
+
+        System.out.println("Listando livros...");
+     
+    }
+
+
 
 }
 

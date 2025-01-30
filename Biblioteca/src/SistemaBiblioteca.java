@@ -89,9 +89,11 @@ public class SistemaBiblioteca {
                 
                 case 5:
                     System.out.println("Listar Livros");
+                    Biblioteca.listarLivros();
                     break;
                 case 6:
                     System.out.println("Listar Usuários");
+                    Biblioteca.listarUsuarios();
                     break;
                 case 7:
                     System.out.println("Sair");

@@ -5,6 +5,7 @@ public class Livro {
     private String editora;
     private int numeroPaginas;
     private int quantidade;
+    private boolean emprestado;
 
 public  Livro(String isnn, String titulo, String autores, String editora, int numeroPaginas, int quantidade) {
     this.isbn = isnn;
@@ -17,6 +18,10 @@ public  Livro(String isnn, String titulo, String autores, String editora, int nu
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public String getIsbn() {
+        return isbn;
     }
 
     public String getTitulo() {
@@ -79,3 +84,43 @@ public  Livro(String isnn, String titulo, String autores, String editora, int nu
         }
     
     
+
+public class Emprestimo {
+
+    private String isbn;
+
+    private String matricula;
+
+
+
+    public Emprestimo(String isbn, String matricula) {
+
+        this.isbn = isbn;
+
+        this.matricula = matricula;
+
+    }
+
+
+
+    public String getIsbn() {
+
+        return isbn;
+
+    }
+
+
+
+    public String getMatricula() {
+
+        return matricula;
+
+    }
+
+
+
+    // other methods
+
+}
+
+

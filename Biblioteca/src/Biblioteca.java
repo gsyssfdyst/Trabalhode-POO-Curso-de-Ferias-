@@ -1,16 +1,13 @@
 import java.util.*;
 
 public class Biblioteca {
-   private List<Usuario> usuarios = new ArrayList<>();
-    private List<Livro> livros = new ArrayList<>();
-    
+    private List<Usuario> usuarios;
+    private List<Livro> livros;
+
     public Biblioteca() {
         this.usuarios = new ArrayList<>();
         this.livros = new ArrayList<>();
-
     }
-
-   
 
     public void cadastrarUsuario(Usuario usuario) throws Exception {
         for (Usuario u : usuarios) {
@@ -31,19 +28,21 @@ public class Biblioteca {
     }
 
     public Usuario buscarUsuario(String cpf) throws Exception {
-        Usuario usuario = usuarios.get(cpf);
-        if (usuario == null) {
-            throw new Exception("Usuário não encontrado.");
+        for (Usuario usuario : usuarios) {
+            if (usuario.getCpf().equals(cpf)) {
+                return usuario;
+            }
         }
-        return usuario;
+        throw new Exception("Usuário não encontrado.");
     }
 
     public Livro buscarLivro(String isbn) throws Exception {
-        Livro livro = livros.get(isbn);
-        if (livro == null) {
-            throw new Exception("Livro não encontrado.");
+        for (Livro livro : livros) {
+            if (livro.getIsbn().equals(isbn)) {
+                return livro;
+            }
         }
-        return livro;
+        throw new Exception("Livro não encontrado.");
     }
 
     public void realizarEmprestimo(String cpf, String isbn) throws Exception {
@@ -58,7 +57,7 @@ public class Biblioteca {
         }
 
         livro.emprestar();
-        usuario.adicionarEmprestimo(new Emprestimo(isbn, cpf, new Date()));
+        usuario.adicionarEmprestimo(new Emprestimo(isbn, cpf));
     }
 
     public void devolverLivro(String cpf, String isbn) throws Exception {
@@ -71,56 +70,99 @@ public class Biblioteca {
 
         livro.devolver();
         usuario.removerEmprestimo(isbn);
-    //public static void listarUsuarios() {
-        List<Usuario> usuariosOrdenados = new ArrayList<>(usuarios.values());
+    }
+
+    public void listarUsuarios() {
+        List<Usuario> usuariosOrdenados = new ArrayList<>(usuarios);
         Collections.sort(usuariosOrdenados, Comparator.comparing(Usuario::getNome));
         for (Usuario u : usuariosOrdenados) {
             System.out.println(u);
         }
-
-
-    public static void listarUsuarios() {
-        // Implementação do método listarUsuarios
-
-        System.out.println("Listando usuários...");
-
     }
 
-    
-// Parte 2 do exercício
-
-    public static void EmprestarLivro(String isbn, String matricula) {
-
-        // Implementação do método EmprestarLivro
-
-        System.out.println("Livro emprestado: ISBN " + isbn + ", Matrícula " + matricula);
-
-    }
-
-    public static void DevolverLivro(String isbn, String matricula) {
-
-        // Implement the logic to return a book here
-
-        System.out.println("Livro devolvido com sucesso!");
-
-    }
-
-     public static void listarLivros() {
-        // Implementação do método listarLivros
-        List<Livro> livrosOrdenados = new ArrayList<>(livros.values());
+    public void listarLivros() {
+        List<Livro> livrosOrdenados = new ArrayList<>(livros);
         Collections.sort(livrosOrdenados, Comparator.comparing(Livro::getTitulo));
         for (Livro l : livrosOrdenados) {
             System.out.println(l);
         }
+    }
+
+    public static void EmprestarLivro(String isbn, String matricula) {
+        // Implementação do método EmprestarLivro
+        System.out.println("Livro emprestado: ISBN " + isbn + ", Matrícula " + matricula);
+    }
+
+    public static void DevolverLivro(String isbn, String matricula) {
+        // Implementação do método DevolverLivro
+        System.out.println("Livro devolvido com sucesso!");
+    }
+
+   
+public class Emprestimo {
+    private String isbn;
+    private String cpf;
+
+    public Emprestimo(String isbn, String cpf) {
+        this.isbn = isbn;
+        this.cpf = cpf;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+}
+
+public class Livro {
+
+    private String isbn;
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    private String titulo;
+
+    private boolean emprestado;
 
 
-        System.out.println("Listando livros...");
-     
+
+    // other fields and methods
+
+
+
+    public void emprestar() {
+
+        if (emprestado) {
+
+            throw new IllegalStateException("Livro já está emprestado.");
+
+        }
+
+        emprestado = true;
+
     }
 
 
+
+    public void devolver() {
+
+        if (!emprestado) {
+
+            throw new IllegalStateException("Livro não está emprestado.");
+
+        }
+
+        emprestado = false;
+
+    }
 
 }
 
-    }
+
+
 }

@@ -44,10 +44,18 @@ public class SistemaBiblioteca {
                     int numeroPaginas = scanner.nextInt();
                     System.out.print("Digite a quantidade de exemplares: ");
                     int quantidade = scanner.nextInt();
+                    try {
+                        Livro livro = new Livro(isbn, titulo, autor, editora, numeroPaginas, quantidade);
+                        biblioteca.cadastrarLivro(livro);
+                        System.out.println("Livro cadastrado com sucesso!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 2:
                     System.out.println("Cadastrar Aluno(A) ou Servidor(S)?");
                     char tipo = scanner.next().charAt(0);
+                    scanner.nextLine(); // Limpa o buffer do teclado
                     System.out.println("2. Cadastrar Usuário");
                     System.out.print("Digite o CPF: ");
                     String cpf = scanner.nextLine();
@@ -61,31 +69,50 @@ public class SistemaBiblioteca {
                     String email = scanner.nextLine();
                     System.out.print("Digite a matrícula: ");
                     String matricula = scanner.nextLine();
-                    if (tipo == 'A') {
-                        System.out.print("Digite o curso: ");
-                        String curso = scanner.nextLine();
-                    } else if (tipo == 'S') {
-                        System.out.print("Digite o cargo: ");
-                        String cargo = scanner.nextLine();
-                    } else {
-                        System.out.println("Tipo inválido");
+                    try {
+                        if (tipo == 'A') {
+                            System.out.print("Digite o curso: ");
+                            String curso = scanner.nextLine();
+                            UsuarioAluno aluno = new UsuarioAluno(cpf, nome, endereco, telefone, email, matricula, curso);
+                            biblioteca.cadastrarUsuario(aluno);
+                        } else if (tipo == 'S') {
+                            System.out.print("Digite o cargo: ");
+                            String cargo = scanner.nextLine();
+                            UsuarioServidor servidor = new UsuarioServidor(cpf, nome, endereco, telefone, email, matricula, cargo);
+                            biblioteca.cadastrarUsuario(servidor);
+                        } else {
+                            System.out.println("Tipo inválido");
+                        }
+                        System.out.println("Usuário cadastrado com sucesso!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 3:
                     System.out.println("3. Emprestar Livro");
+                    System.out.print("Digite o CPF do usuário: ");
+                    String cpfEmprestimo = scanner.nextLine();
                     System.out.print("Digite o ISBN do livro: ");
                     String isbnEmprestimo = scanner.nextLine();
-                    System.out.print("Digite a matrícula do usuário: ");
-                    String matriculaEmprestimo = scanner.nextLine();
-                    Biblioteca.EmprestarLivro(isbnEmprestimo, matriculaEmprestimo);
+                    try {
+                        biblioteca.realizarEmprestimo(cpfEmprestimo, isbnEmprestimo);
+                        System.out.println("Livro emprestado com sucesso!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 4:
                     System.out.println("Devolver Livro");
+                    System.out.print("Digite o CPF do usuário: ");
+                    String cpfDevolucao = scanner.nextLine();
                     System.out.print("Digite o ISBN do livro: ");
                     String isbnDevolucao = scanner.nextLine();
-                    System.out.print("Digite a matrícula do usuário: ");
-                    String matriculaDevolucao = scanner.nextLine();
-                    Biblioteca.DevolverLivro(isbnDevolucao, matriculaDevolucao);
+                    try {
+                        biblioteca.devolverLivro(cpfDevolucao, isbnDevolucao);
+                        System.out.println("Livro devolvido com sucesso!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 5:
                     System.out.println("Listar Livros");

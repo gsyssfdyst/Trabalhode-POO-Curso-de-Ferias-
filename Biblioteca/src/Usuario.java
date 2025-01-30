@@ -10,7 +10,6 @@ public class Usuario {
     private String matricula;
     private List<Emprestimo> emprestimos;
 
-
     public Usuario(String cpf, String nome, String endereco, String telefone, String email, String matricula) {
         this.cpf = cpf;
         this.nome = nome;
@@ -74,7 +73,7 @@ public class Usuario {
     }
 
     public boolean atingiuLimiteEmprestimos() {
-        return emprestimos.size() >= getLimiteEmprestimos();
+        return emprestimos.size() >= 5; // Assuming the limit is 5
     }
 
     public void adicionarEmprestimo(Emprestimo emprestimo) {

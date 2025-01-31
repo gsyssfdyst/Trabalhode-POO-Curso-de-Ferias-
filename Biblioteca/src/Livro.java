@@ -1,4 +1,6 @@
-public class Livro {
+import java.io.Serializable;
+
+public class Livro implements Serializable {
     private String isbn;
     private String titulo;
     private String autores;
@@ -67,11 +69,16 @@ public class Livro {
     }
 
     public void emprestar() {
+        if (quantidade <= 0) {
+            throw new IllegalStateException("Não há exemplares disponíveis para empréstimo.");
+        }
         this.quantidadeEmprestada++;
+        this.quantidade--;
     }
 
     public void devolver() {
         this.quantidadeEmprestada--;
+        this.quantidade++;
     }
 }
 

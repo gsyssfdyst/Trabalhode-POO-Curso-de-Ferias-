@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private String cpf;
     private String nome;
     private String endereco;
     private String telefone;
     private String email;
     private String matricula;
-    private List<Emprestimo> emprestimos;
+    protected List<Emprestimo> emprestimos; // Alterado para protected
 
     public Usuario(String cpf, String nome, String endereco, String telefone, String email, String matricula) {
         this.cpf = cpf;
@@ -82,5 +83,11 @@ public class Usuario {
 
     public void removerEmprestimo(String isbn) {
         this.emprestimos.removeIf(e -> e.getIsbn().equals(isbn));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("CPF: %s, Nome: %s, Endereço: %s, Telefone: %s, Email: %s, Matrícula: %s",
+                cpf, nome, endereco, telefone, email, matricula);
     }
 }

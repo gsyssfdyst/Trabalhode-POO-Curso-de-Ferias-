@@ -13,4 +13,14 @@ public class UsuarioAluno extends Usuario {
     public void setCurso(String curso) {
         this.curso = curso;
     }
+
+    @Override
+    public boolean atingiuLimiteEmprestimos() {
+        return emprestimos.size() >= 3; // Limite de 3 livros para alunos
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format(", Curso: %s", curso);
+    }
 }

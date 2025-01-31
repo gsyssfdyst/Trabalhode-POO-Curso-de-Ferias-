@@ -1,4 +1,3 @@
-
 public class UsuarioServidor extends Usuario {
     private String cargo;
 
@@ -13,5 +12,15 @@ public class UsuarioServidor extends Usuario {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    @Override
+    public boolean atingiuLimiteEmprestimos() {
+        return emprestimos.size() >= 5; // Limite de 5 livros para servidores
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + String.format(", Cargo: %s", cargo);
     }
 }

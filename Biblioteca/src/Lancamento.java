@@ -1,6 +1,7 @@
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Lancamento {
+public class Lancamento implements Serializable {
     private String isbn;
     private String matricula;
     private LocalDate dataEmprestimo;

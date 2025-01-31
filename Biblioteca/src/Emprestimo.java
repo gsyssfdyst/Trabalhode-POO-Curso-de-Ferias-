@@ -1,4 +1,6 @@
-public class Emprestimo {
+import java.io.Serializable;
+
+public class Emprestimo implements Serializable {
     private String isbn;
     private String cpf;
 
